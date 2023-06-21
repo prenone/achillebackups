@@ -1,0 +1,6 @@
+export BACKUP_USER="1"
+export BACKUP_USER_PASSWORD=""
+export BACKUP_ENCRYPTION_PASSWORD=""
+export BACKUP_SERVER=""
+export BACKUP_TAG="automated"
+export BACKUP_FREQUENCY="12h" # Only single unit supported, do NOT compose like "1d12h".

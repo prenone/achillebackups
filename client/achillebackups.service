@@ -1,0 +1,5 @@
+[Unit]
+Description=Executes AchilleBackups script
+
+[Service]
+ExecStart=/usr/local/bin/achillebackups automated
