@@ -1,4 +1,4 @@
-export BACKUP_USER="1"
+export BACKUP_USER=""
 export BACKUP_USER_PASSWORD=""
 export BACKUP_ENCRYPTION_PASSWORD=""
 export BACKUP_SERVER=""
