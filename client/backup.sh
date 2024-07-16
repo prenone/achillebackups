@@ -73,10 +73,18 @@ elif [ "$1" = "uninstall" ]; then
 
     echo "✅ AchilleBackups uninstalled"
     exit 0
-fi
+elif [ "$1" = "mount-backup" ]; then
+	read -p "Enter rest-server url (ex. achillebackups.achilleme.com): " BACKUP_SERVER
+    read -p "Enter restic user: " BACKUP_USER
+    read -s -p "Enter restic password: " BACKUP_USER_PASSWORD
+    read -s -p "Enter restic encryption password: " BACKUP_ENCRYPTION_PASSWORD
+    read -p "Enter mount folder (ex. /mnt/$BACKUP_USER): " BACKUP_MOUNT_FOLDER
 
-# Sets restic environment variables
-. "$configuration_file"
+    mkdir -p $BACKUP_MOUNT_FOLDER
+else
+    # Sets restic environment variables
+    . "$configuration_file"
+fi
 
 export RESTIC_REPOSITORY="rest:https://$BACKUP_USER:$BACKUP_USER_PASSWORD@$BACKUP_SERVER/$BACKUP_USER"
 export RESTIC_PASSWORD="$BACKUP_ENCRYPTION_PASSWORD"
@@ -92,6 +100,9 @@ if [ "$1" = "init" ]; then
     echo "✅ Repository initialized"
 fi
 
+if [ "$1" = "mount-backup" ]; then
+    restic mount $BACKUP_MOUNT_FOLDER
+fi
 
 if [ "$1" = "automated" ]; then
     if ! test -f "$last_backup_timestamp_file"; then
